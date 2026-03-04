@@ -24,6 +24,9 @@ export function Checkout({ onNavigate }: CheckoutProps) {
   const [step, setStep] = useState<"info" | "payment" | "confirmation">(
     "info"
   );
+  const [orderNumber] = useState(() =>
+    Math.random().toString(36).substring(2, 8).toUpperCase()
+  );
   const [formData, setFormData] = useState({
     email: "",
     firstName: "",
@@ -60,7 +63,7 @@ export function Checkout({ onNavigate }: CheckoutProps) {
             Thank you for your purchase, {formData.firstName}!
           </p>
           <p className="text-sm text-muted-foreground mb-8">
-            Order #TC-{Math.random().toString(36).substring(2, 8).toUpperCase()}{" "}
+            Order #TC-{orderNumber}{" "}
             has been placed. You&apos;ll receive a confirmation email at{" "}
             {formData.email}.
           </p>
